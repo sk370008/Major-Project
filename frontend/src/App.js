@@ -26,11 +26,13 @@ import axios from 'axios';
 import SearchBox from './components/SearchBox.js';
 import SearchScreen from './screens/SearchScreen.js';
 import ProtectedRoute from './components/ProtectedRoute.js';
-import DashboardScreen from './screens/DahboardScreen.js';
+import DashboardScreen from './screens/DashboardScreen.js';
 import AdminRoute from './components/AdminRoute.js';
 import ProductListScreen from './screens/ProductListScreen.js';
 import ProductEditScreen from './screens/ProductEditScreen.js';
 import OrderListScreen from './screens/OrderListScreen.js';
+import UserListScreen from './screens/UserListScreen.js';
+import UserEditScreen from './screens/UserEditScreen.js';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -221,10 +223,26 @@ function App() {
                 }
               ></Route>
               <Route
+                path="/admin/users"
+                element={
+                  <AdminRoute>
+                    <UserListScreen />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
                 path="/admin/product/:id"
                 element={
                   <AdminRoute>
                     <ProductEditScreen />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/user/:id"
+                element={
+                  <AdminRoute>
+                    <UserEditScreen />
                   </AdminRoute>
                 }
               ></Route>

@@ -2,6 +2,7 @@ import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
 import User from '../models/userModel.js';
+import Product from '../models/productModel.js';
 import { isAdmin, isAuth } from '../utils.js';
 
 const orderRouter = express.Router();
@@ -61,7 +62,7 @@ orderRouter.get(
     const dailyOrders = await Order.aggregate([
       {
         $group: {
-          _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } },
+          _id: { $dateToString: { format: '%d-%m-%Y', date: '$createdAt' } },
           orders: { $sum: 1 },
           sales: { $sum: '$totalPrice' },
         },
